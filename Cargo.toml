@@ -5,6 +5,7 @@ authors = [
     "Runji Wang <wangrunji0408@163.com>",
     "Yuekai Jia <equation618@gmail.com>",
     "Jiajie Chen <jiegec@qq.com>",
+    "Piorpie <contact@piorpie.com>"
 ]
 edition = "2021"
 description = "Terminal emulator on embedded-graphics."
