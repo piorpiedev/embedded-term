@@ -7,7 +7,7 @@ authors = [
     "Jiajie Chen <jiegec@qq.com>",
     "Piorpie <contact@piorpie.com>"
 ]
-edition = "2021"
+edition = "2024"
 description = "Terminal emulator on embedded-graphics."
 keywords = ["terminal", "no-std"]
 categories = ["embedded", "gui", "no-std"]
