@@ -10,24 +10,6 @@ This crate is `no_std` compatible. It is suitable for embedded systems and OS ke
 
 [embedded-graphics]: https://github.com/embedded-graphics/embedded-graphics
 
-## Run example
-
-1. rterm
-
-Read and show stdin:
-
-```
-htop | cargo run --example rterm
-```
-
-2. pty
-
-Spawn a process and show:
-
-```
-cargo run --example pty htop
-```
-
 TODO: documents and tests
 
 ## Optional features
