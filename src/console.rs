@@ -7,6 +7,7 @@ use crate::text_buffer_cache::TextBufferCache;
 use alloc::collections::VecDeque;
 use core::cmp::min;
 use core::fmt;
+use embedded_graphics::mono_font::MonoFont;
 
 use embedded_graphics::prelude::{DrawTarget, OriginDimensions};
 use vte::Parser;
@@ -43,13 +44,21 @@ struct ConsoleInner<T: TextBuffer> {
 }
 
 /// Console on top of a frame buffer
-pub type ConsoleOnGraphic<D> = Console<TextBufferCache<TextOnGraphic<D>>>;
+pub type ConsoleOnGraphic<'a, D> = Console<TextBufferCache<TextOnGraphic<'a, D>>>;
 
-impl<D: DrawTarget<Color = Rgb888> + OriginDimensions> Console<TextBufferCache<TextOnGraphic<D>>> {
+impl<'a, D: DrawTarget<Color = Rgb888> + OriginDimensions>
+    Console<TextBufferCache<TextOnGraphic<'a, D>>>
+{
     /// Create a console on top of a frame buffer
-    pub fn on_frame_buffer(buffer: D) -> Self {
+    pub fn on_frame_buffer(buffer: D, font: MonoFont<'a>, font_bold: Option<MonoFont<'a>>) -> Self {
         let size = buffer.size();
-        Self::on_cached_text_buffer(TextOnGraphic::new(buffer, size.width, size.height))
+        Self::on_cached_text_buffer(TextOnGraphic::new(
+            buffer,
+            size.width,
+            size.height,
+            font,
+            font_bold,
+        ))
     }
 }
 
