@@ -82,6 +82,12 @@ impl<T: TextBuffer> Console<T> {
             .advance(&mut Performer::new(&mut self.inner), &[byte]);
     }
 
+    /// Write byte slice to console
+    pub fn write_bytes(&mut self, byte: &[u8]) {
+        self.parser
+            .advance(&mut Performer::new(&mut self.inner), byte);
+    }
+
     /// Read result for some commands
     pub fn pop_report(&mut self) -> Option<u8> {
         self.inner.report.pop_front()
@@ -100,9 +106,7 @@ impl<T: TextBuffer> Console<T> {
 
 impl<T: TextBuffer> fmt::Write for Console<T> {
     fn write_str(&mut self, s: &str) -> fmt::Result {
-        for byte in s.bytes() {
-            self.write_byte(byte);
-        }
+        self.write_bytes(s.as_bytes());
         Ok(())
     }
 }
