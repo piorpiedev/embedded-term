@@ -196,7 +196,7 @@ impl<T: TextBuffer> Handler for ConsoleInner<T> {
             loop {
                 self.buf.write(self.cursor.row, self.cursor.col, bg);
                 self.cursor.col += 1;
-                if self.cursor.col == self.buf.width() || self.cursor.col % 8 == 0 {
+                if self.cursor.col == self.buf.width() || self.cursor.col.is_multiple_of(8) {
                     break;
                 }
             }
